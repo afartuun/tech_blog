@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     })
 });
 
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
     Comment.create({
         post_id: req.body.post_id,
         user_id:req.session.user_id
@@ -22,7 +22,7 @@ router.post('/', withAuth, (req, res) => {
     })
 });
 
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     Comment.destroy({where: {id:req.params.id}})
 }).then(dbCommentData => {
     res.status(404).json({
